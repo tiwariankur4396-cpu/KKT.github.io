@@ -1,6 +1,6 @@
 // REGISTERED USERS (DEVELOPER ADDS)
 const users = [
-    { name: "ANKUR", roll: "064" },
+    { name: "ANKUR71", roll: "064" },
     { name: "student2", roll: "456" }
 ];
 
@@ -53,3 +53,4 @@ function search() {
         result.innerText = "Not Available";
     }
 }
+

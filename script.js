@@ -50,9 +50,11 @@ function search() {
                 `<img src="${filePath}" width="700" height="500">`;
         }
     } else {
-        result.innerText = "Not Available";
+        
+result.innerText = `No file found for "${key}"`
     }
 }
+
 
 
 

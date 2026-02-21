@@ -1,19 +1,14 @@
-// -------- USERS --------
 const users = [
   { name: "ankur71", roll: "064" }
 ];
 
-// -------- BASE PATH (AUTO, CORRECT) --------
-const BASE_URL = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, "/");
-
-// -------- FILE MAP (NO EXTENSION LIMIT) --------
+// ✅ PROJECT-REPO SAFE PATHS
 const files = {
-  screenshot: "files/screenshot3.png",
-  photo: "files/photo.jpg",
-  notes: "files/notes.pdf"
+  screenshot: "/KKT.github.io/files/screenshot3.png",
+  photo: "/KKT.github.io/files/photo.jpg",
+  notes: "/KKT.github.io/files/notes.pdf"
 };
 
-// -------- LOGIN --------
 function login() {
   const name = document.getElementById("name").value.trim().toLowerCase();
   const roll = document.getElementById("roll").value.trim();
@@ -30,7 +25,6 @@ function login() {
   document.getElementById("searchSection").style.display = "block";
 }
 
-// -------- OPEN FILE --------
 function search() {
   const key = document.getElementById("searchBox").value.trim().toLowerCase();
 
@@ -39,6 +33,6 @@ function search() {
     return;
   }
 
-  const fullPath = BASE_URL + files[key];
-  window.open(fullPath, "_blank");
+  // ✅ OPEN FILE DIRECTLY
+  window.open(files[key], "_blank");
 }

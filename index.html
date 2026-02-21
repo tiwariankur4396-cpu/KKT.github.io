@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>KKT File Portal</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,18 +12,19 @@
 
     input {
       padding: 8px;
-      margin: 5px 0;
-      width: 200px;
+      margin: 6px 0;
+      width: 220px;
     }
 
     button {
-      padding: 8px 15px;
+      padding: 8px 16px;
+      margin-top: 8px;
       cursor: pointer;
     }
 
     #searchSection {
       display: none;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     #result {
@@ -30,6 +32,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- LOGIN SECTION -->
@@ -39,19 +42,23 @@
     <input id="name" type="text" placeholder="Enter Name">
     <br>
 
-    <input id="roll" type="text" placeholder="Enter Roll No">
+    <input id="roll" type="text" placeholder="Enter Roll Number">
     <br>
 
     <button onclick="login()">Login</button>
 
-    <p id="msg" style="color:red"></p>
+    <p id="msg" style="color:red;"></p>
   </div>
 
   <!-- SEARCH SECTION -->
   <div id="searchSection">
     <h2>Search Files</h2>
 
-    <input id="searchBox" type="text" placeholder="Search (notes, photo, screenshot)">
+    <input
+      id="searchBox"
+      type="text"
+      placeholder="Search: notes, photo, screenshot"
+    >
     <br>
 
     <button onclick="search()">Search</button>
@@ -59,9 +66,8 @@
     <div id="result"></div>
   </div>
 
-  <!-- JS FILE (MUST BE LAST) -->
+  <!-- SCRIPT (MUST BE LAST) -->
   <script src="script.js"></script>
 
 </body>
 </html>
-

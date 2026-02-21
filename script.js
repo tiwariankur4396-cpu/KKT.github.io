@@ -7,7 +7,7 @@ const users = [
 
 /* ===== FILE MAP ===== */
 const files = {
-  screenshot: "files/screenshot3.png",
+  screenshot: "files/Screenshot3.png",
   photo: "files/photo.jpg",
   notes: "files/notes.pdf"
 };
@@ -61,6 +61,7 @@ function search() {
     output.appendChild(img);
   }
 }
+
 
 
 

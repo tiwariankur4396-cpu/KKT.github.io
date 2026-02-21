@@ -1,76 +1,65 @@
-// USERS
 const users = [
   { name: "ankur", roll: "064" },
   { name: "vibhansh", roll: "047" }
 ];
 
-// FILES (KEYS MUST BE LOWERCASE)
+// FILE REGISTRY (KEYS LOWERCASE)
+// You can add ANY pdf/png/jpg/jpeg here safely
 const files = {
-  notes: "/files/notes.pdf",
   screenshot: "/files/Screenshot3.png",
   screenshot3: "/files/Screenshot3.png",
-  photo: "/files/photo.png"
+  photo: "/files/photo.jpg",
+  image: "/files/image.png",
+  notes: "/files/notes.pdf"
 };
 
-// LOGIN FUNCTION
+// LOGIN
 function login() {
-  const nameInput = document.getElementById("name");
-  const rollInput = document.getElementById("roll");
+  const name = document.getElementById("name").value.toLowerCase().trim();
+  const roll = document.getElementById("roll").value.trim();
   const msg = document.getElementById("msg");
 
-  const name = nameInput.value.toLowerCase().trim();
-  const roll = rollInput.value.trim();
+  const valid = users.find(u => u.name === name && u.roll === roll);
 
-  const user = users.find(
-    u => u.name === name && u.roll === roll
-  );
-
-  if (!user) {
+  if (!valid) {
     msg.innerText = "Invalid login";
     return;
   }
 
-  // SHOW / HIDE SECTIONS (SAFE WAY)
-  const loginDiv = document.getElementById("login");
-  const searchDiv = document.getElementById("searchSection");
-
-  loginDiv.style.display = "none";
-  searchDiv.style.display = "block";
-
-  msg.innerText = "";
-}
-  // SUCCESS
   document.getElementById("login").style.display = "none";
   document.getElementById("searchSection").style.display = "block";
-  msg.innerText = "";
 }
 
-// SEARCH FUNCTION
+// SEARCH
 function search() {
-  const key = document
-    .getElementById("searchBox")
-    .value
-    .toLowerCase()
-    .trim();
-
+  const key = document.getElementById("searchBox").value.toLowerCase().trim();
   const result = document.getElementById("result");
   result.innerHTML = "";
 
   if (!files[key]) {
-    result.innerHTML = `<p style="color:red">File not found</p>`;
+    result.innerHTML = "<p style='color:red'>File not found</p>";
     return;
   }
 
   const filePath = files[key];
+  const ext = filePath.split(".").pop().toLowerCase();
 
-  if (filePath.endsWith(".pdf")) {
+  // PDF
+  if (ext === "pdf") {
+    result.innerHTML = `<iframe src="${filePath}"></iframe>`;
+  }
+  // IMAGES
+  else if (["png", "jpg", "jpeg"].includes(ext)) {
     result.innerHTML = `
-      <iframe src="${filePath}" width="700" height="500"></iframe>
-    `;
-  } else {
-    result.innerHTML = `
-      <img src="${filePath}" style="max-width:100%; border:2px solid black;">
+      <img 
+        src="${filePath}" 
+        alt="Image"
+        onerror="this.outerHTML='<p style=color:red>Image failed to load</p>'"
+      >
     `;
   }
+  // UNKNOWN FILE
+  else {
+    result.innerHTML = `<p style='color:red'>Unsupported file type</p>`;
+  }
 }
-

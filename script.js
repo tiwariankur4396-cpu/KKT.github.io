@@ -7,7 +7,7 @@ const users = [
 // REGISTERED FILES
 const files = {
     "notes": "files/notes.pdf",
-    "Screenshot3": "/files/Screenshot3.png",
+    "screenshot3": "/files/Screenshot3.png",
     "photo": "/files/photo.png"
 };
 
@@ -53,6 +53,7 @@ function search() {
         result.innerText = "Not Available";
     }
 }
+
 
 
 

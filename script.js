@@ -7,9 +7,9 @@ const users = [
 // FIXED: Removed "files/" prefix because images are in the same folder as this JS file.
 // Also fixed capitalization to match your sidebar exactly.
 const files = {
-    screenshot: "Screenshot3.png", 
-    photo: "photo.png",
-    notes: "notes.pdf"
+    screenshot: "files/Screenshot3.png", 
+    photo: "files/photo.png",
+    notes: "files/notes.pdf"
 };
 
 function login() {
@@ -64,3 +64,4 @@ function search() {
         result.appendChild(img);
     }
 }
+

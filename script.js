@@ -1,43 +1,28 @@
 "use strict";
 
-/* =========================
-   USER LOGIN DATA
-   ========================= */
-const USERS = [
-  {
-    username: "ankur71",
-    roll: "064"
-  }
+/* ===== LOGIN DATA ===== */
+const users = [
+  { name: "ankur71", roll: "064" }
 ];
 
-/* =========================
-   FILE MAP
-   (paths are RELATIVE)
-   ========================= */
-const FILES = {
+/* ===== FILE MAP ===== */
+const files = {
   screenshot: "files/screenshot3.png",
   photo: "files/photo.jpg",
   notes: "files/notes.pdf"
 };
 
-/* =========================
-   LOGIN FUNCTION
-   ========================= */
+/* ===== LOGIN ===== */
 function login() {
-  const nameInput = document.getElementById("name");
-  const rollInput = document.getElementById("roll");
+  const name = document.getElementById("name").value.trim().toLowerCase();
+  const roll = document.getElementById("roll").value.trim();
   const msg = document.getElementById("msg");
 
-  if (!nameInput || !rollInput || !msg) return;
-
-  const name = nameInput.value.trim().toLowerCase();
-  const roll = rollInput.value.trim();
-
-  const validUser = USERS.find(
-    u => u.username === name && u.roll === roll
+  const valid = users.find(
+    u => u.name === name && u.roll === roll
   );
 
-  if (!validUser) {
+  if (!valid) {
     msg.textContent = "Invalid login";
     return;
   }
@@ -47,50 +32,32 @@ function login() {
   document.getElementById("searchSection").style.display = "block";
 }
 
-/* =========================
-   SHOW FILE (SAME PAGE ONLY)
-   ========================= */
-function showFile() {
-  const input = document.getElementById("searchBox");
-  const viewer = document.getElementById("viewer");
+/* ===== SEARCH & DISPLAY (SAME PAGE) ===== */
+function search() {
+  const key = document.getElementById("searchBox").value.trim().toLowerCase();
+  const output = document.getElementById("result");
 
-  if (!input || !viewer) return;
+  output.innerHTML = "";
 
-  const key = input.value.trim().toLowerCase();
-  viewer.innerHTML = "";
-
-  if (!FILES[key]) {
-    viewer.textContent = "File not found";
+  if (!files[key]) {
+    output.textContent = "File not found";
     return;
   }
 
-  const path = FILES[key];
-  const extension = path.split(".").pop().toLowerCase();
+  const path = files[key];
+  const ext = path.split(".").pop().toLowerCase();
 
-  // IMAGE FILES
-  if (extension === "png" || extension === "jpg" || extension === "jpeg") {
-    const img = document.createElement("img");
-    img.src = path;
-    img.alt = "Loaded file";
-    img.style.width = "100%";
-    viewer.appendChild(img);
-    return;
-  }
-
-  // PDF FILES
-  if (extension === "pdf") {
+  if (ext === "pdf") {
     const obj = document.createElement("object");
     obj.data = path;
     obj.type = "application/pdf";
     obj.style.width = "100%";
     obj.style.height = "500px";
-    viewer.appendChild(obj);
-    return;
+    output.appendChild(obj);
+  } else {
+    const img = document.createElement("img");
+    img.src = path;
+    img.style.width = "100%";
+    output.appendChild(img);
   }
-
-  viewer.textContent = "Unsupported file type";
 }
-
-
-
-

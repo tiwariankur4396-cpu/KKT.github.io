@@ -1,52 +1,42 @@
-// ================= USERS =================
+// USERS (lowercase only)
 const users = [
-  {
-    name: "ankur71", // ALWAYS lowercase
-    roll: "064"
-  }
+  { name: "ankur71", roll: "064" }
 ];
 
-// ================= FILE MAP =================
-// RULES:
-// - filenames MUST be lowercase
-// - extensions must match exactly
-// - use ./files/ always
-
+// FILES
 const files = {
   screenshot: "./files/screenshot3.png",
   photo: "./files/photo.jpg",
-  image: "./files/image.png",
   notes: "./files/notes.pdf"
 };
 
-// ================= LOGIN =================
+// LOGIN
 function login() {
-  const nameInput = document.getElementById("name").value.trim();
-  const rollInput = document.getElementById("roll").value.trim();
+  const name = document.getElementById("name").value.trim().toLowerCase();
+  const roll = document.getElementById("roll").value.trim();
   const msg = document.getElementById("msg");
 
-  const name = nameInput.toLowerCase(); // normalize input
+  if (!name || !roll) {
+    msg.textContent = "Please fill all fields";
+    return;
+  }
 
-  const validUser = users.find(
-    u => u.name === name && u.roll === rollInput
-  );
+  const user = users.find(u => u.name === name && u.roll === roll);
 
-  if (!validUser) {
+  if (!user) {
     msg.textContent = "Invalid login";
     return;
   }
 
   msg.textContent = "";
-
   document.getElementById("login").style.display = "none";
   document.getElementById("searchSection").style.display = "block";
 }
 
-// ================= SEARCH =================
+// SEARCH
 function search() {
   const key = document.getElementById("searchBox").value.trim().toLowerCase();
   const result = document.getElementById("result");
-
   result.innerHTML = "";
 
   if (!files[key]) {
@@ -58,12 +48,9 @@ function search() {
   const ext = path.split(".").pop();
 
   if (ext === "pdf") {
-    result.innerHTML = `
-      <iframe src="${path}" width="100%" height="500"></iframe>
-    `;
+    result.innerHTML = `<iframe src="${path}"></iframe>`;
   } else {
-    result.innerHTML = `
-      <img src="${path}" alt="file" style="max-width:100%;height:auto;">
-    `;
+    result.innerHTML = `<img src="${path}">`;
   }
 }
+

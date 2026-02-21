@@ -1,14 +1,16 @@
+// -------- USERS --------
 const users = [
   { name: "ankur71", roll: "064" }
 ];
 
-// Only RELATIVE paths — no slashes, no repo names
+// -------- FILE MAP (RELATIVE TO index.html) --------
 const files = {
   screenshot: "files/screenshot3.png",
   photo: "files/photo.jpg",
   notes: "files/notes.pdf"
 };
 
+// -------- LOGIN --------
 function login() {
   const name = document.getElementById("name").value.trim().toLowerCase();
   const roll = document.getElementById("roll").value.trim();
@@ -25,14 +27,17 @@ function login() {
   document.getElementById("searchSection").style.display = "block";
 }
 
+// -------- OPEN FILE (BULLETPROOF) --------
 function search() {
   const key = document.getElementById("searchBox").value.trim().toLowerCase();
 
   if (!files[key]) {
-    alert("File not found");
+    alert("File not found in code");
     return;
   }
 
-  // Let the browser resolve the path correctly
-  window.location.href = files[key];
+  // 🔒 ABSOLUTELY CORRECT URL RESOLUTION
+  const fileURL = new URL(files[key], document.baseURI).href;
+
+  window.open(fileURL, "_blank");
 }

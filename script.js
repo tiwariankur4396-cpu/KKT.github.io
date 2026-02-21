@@ -1,49 +1,48 @@
-// 1. DEVELOPER'S USER DATABASE
+"use strict";
+
+// Only these users can enter
 const authorizedUsers = [
-    { name: "ankur71", roll: "064" },
-    { name: "rahul", roll: "001" } // Add more users here
+    { name: "ankur71", roll: "064" }
 ];
 
-// 2. DEVELOPER'S FILE DATABASE
+// FIXED: Exact names from your MyWebsite folder
 const fileDatabase = {
+    "screenshot": "Screenshot3.png", 
     "photo": "photo.png",
-    "screenshot": "Screenshot3.png",
     "notes": "notes.pdf"
 };
 
-// LOGIN FUNCTION
-function checkLogin() {
-    const userIn = document.getElementById("username").value.trim();
-    const rollIn = document.getElementById("rollno").value.trim();
-    const errorMsg = document.getElementById("login-error");
+function login() {
+    // We use lowercase to make login easier for the user
+    const nameInput = document.getElementById("name").value.trim().toLowerCase();
+    const rollInput = document.getElementById("roll").value.trim();
+    const msg = document.getElementById("msg");
 
-    // Check if user exists in our authorized list
-    const userFound = authorizedUsers.find(u => u.name === userIn && u.roll === rollIn);
+    const user = authorizedUsers.find(u => u.name === nameInput && u.roll === rollInput);
 
-    if (userFound) {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("search-box").style.display = "block";
+    if (user) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("searchSection").style.display = "block";
+        msg.textContent = ""; 
     } else {
-        errorMsg.textContent = "Contact the developer";
+        // Requirement: Must say "Contact the developer"
+        msg.textContent = "Contact the developer";
     }
 }
 
-// SEARCH FUNCTION
-function findFile() {
-    const query = document.getElementById("search-input").value.toLowerCase().trim();
-    const display = document.getElementById("display-area");
-    display.innerHTML = ""; // Clear old results
+function search() {
+    const key = document.getElementById("searchBox").value.trim().toLowerCase();
+    const result = document.getElementById("result");
+    result.innerHTML = ""; 
 
-    if (fileDatabase[query]) {
-        const fileName = fileDatabase[query];
-        const extension = fileName.split('.').pop().toLowerCase();
-
-        if (extension === "pdf") {
-            display.innerHTML = <embed src="${fileName}" type="application/pdf" width="100%" height="400px">;
-        } else {
-            display.innerHTML = <img src="${fileName}" alt="result">;
-        }
+    if (fileDatabase[key]) {
+        const fileName = fileDatabase[key];
+        const img = document.createElement("img");
+        img.src = fileName; // No "files/" needed anymore!
+        img.style.width = "100%";
+        result.appendChild(img);
     } else {
-        display.innerHTML = <p class="error">Not Available</p>;
+        // Requirement: Say "Not Available"
+        result.textContent = "Not Available";
     }
 }

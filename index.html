@@ -1,63 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Viewer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login & File Viewer</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      background: #eee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .box {
-      background: white;
-      padding: 20px;
-      width: 100%;
-      max-width: 500px;
-      border-radius: 8px;
-    }
+  .container {
+    background: white;
+    width: 95%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
 
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
+  h3 {
+    margin-top: 0;
+  }
 
-    #viewer {
-      margin-top: 15px;
-    }
+  input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
 
-    img, object {
-      width: 100%;
-      height: auto;
-    }
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
 
-    object {
-      height: 500px;
-    }
-  </style>
+  #searchSection {
+    display: none;
+  }
+
+  #result {
+    margin-top: 15px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  object {
+    width: 100%;
+    height: 500px;
+  }
+</style>
 </head>
 
 <body>
-  <div class="box">
 
-    <!-- NO FORM -->
-    <input id="search" placeholder="screenshot / photo / notes">
+<div class="container">
 
-    <!-- type=button prevents navigation -->
-    <button type="button" onclick="show()">Show</button>
-
-    <div id="viewer"></div>
+  <!-- LOGIN SECTION -->
+  <div id="login">
+    <h3>Login</h3>
+    <input id="name" placeholder="Username">
+    <input id="roll" placeholder="Roll Number">
+    <button type="button" onclick="login()">Login</button>
+    <p id="msg" style="color:red;"></p>
   </div>
 
-  <script src="script.js"></script>
+  <!-- SEARCH SECTION -->
+  <div id="searchSection">
+    <h3>Search File</h3>
+    <input id="searchBox" placeholder="Type: screenshot / photo / notes">
+    <button type="button" onclick="search()">Show</button>
+    <div id="result"></div>
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ===== USER DATA ===== */
+const users = [
+  { name: "ankur71", roll: "064" }
+];
+
+/* ===== FILE PATHS ===== */
+const files = {
+  screenshot: "files/screenshot3.png",
+  photo: "files/photo.jpg",
+  notes: "files/notes.pdf"
+};
+
+/* ===== LOGIN FUNCTION ===== */
+function login() {
+  const name = document.getElementById("name").value.trim().toLowerCase();
+  const roll = document.getElementById("roll").value.trim();
+  const msg = document.getElementById("msg");
+
+  const valid = users.find(
+    u => u.name === name && u.roll === roll
+  );
+
+  if (!valid) {
+    msg.textContent = "Invalid login";
+    return;
+  }
+
+  msg.textContent = "";
+  document.getElementById("login").style.display = "none";
+  document.getElementById("searchSection").style.display = "block";
+}
+
+/* ===== SEARCH & DISPLAY (SAME PAGE) ===== */
+function search() {
+  const key = document.getElementById("searchBox").value.trim().toLowerCase();
+  const result = document.getElementById("result");
+
+  result.innerHTML = "";
+
+  if (!files[key]) {
+    result.textContent = "File not found";
+    return;
+  }
+
+  const path = files[key];
+  const ext = path.split(".").pop().toLowerCase();
+
+  if (ext === "pdf") {
+    const obj = document.createElement("object");
+    obj.data = path;
+    obj.type = "application/pdf";
+    result.appendChild(obj);
+  } else {
+    const img = document.createElement("img");
+    img.src = path;
+    result.appendChild(img);
+  }
+}
+</script>
+
 </body>
 </html>

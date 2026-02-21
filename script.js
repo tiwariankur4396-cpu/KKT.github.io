@@ -1,10 +1,10 @@
-// REGISTERED USERS
+// USERS
 const users = [
-  { name: "ANKUR71", roll: "064" },
-  { name: "VIBHASH29", roll: "047" }
+  { name: "ankur", roll: "064" },
+  { name: "vibhansh", roll: "047" }
 ];
 
-// REGISTERED FILES (ALL KEYS LOWERCASE)
+// FILES (KEYS MUST BE LOWERCASE)
 const files = {
   notes: "/files/notes.pdf",
   screenshot: "/files/Screenshot3.png",
@@ -18,36 +18,36 @@ function login() {
   const roll = document.getElementById("roll").value.trim();
   const msg = document.getElementById("msg");
 
-  if (!name || !roll) {
-    msg.innerText = "Fill all fields";
+  const user = users.find(
+    u => u.name === name && u.roll === roll
+  );
+
+  if (!user) {
+    msg.innerText = "Invalid login";
     return;
   }
 
-  const ok = users.find(u => u.name === name && u.roll === roll);
-
-  if (ok) {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("search").style.display = "block";
-    msg.innerText = "";
-  } else {
-    msg.innerText = "Contact the developer";
-  }
+  // SUCCESS
+  document.getElementById("login").style.display = "none";
+  document.getElementById("searchSection").style.display = "block";
+  msg.innerText = "";
 }
 
 // SEARCH FUNCTION
 function search() {
-  const result = document.getElementById("result");
+  const key = document
+    .getElementById("searchBox")
+    .value
+    .toLowerCase()
+    .trim();
 
-  // HARD-CODED IMAGE (NO VARIABLES, NO CONDITIONS)
-  result.innerHTML = `
-    <h3>Image test</h3>
-    <img 
-      src="/files/Screenshot3.png" 
-      style="max-width:100%; border:3px solid red;"
-      onerror="this.outerHTML='<p style=color:red>IMAGE FAILED TO LOAD</p>'"
-    >
-  `;
-}
+  const result = document.getElementById("result");
+  result.innerHTML = "";
+
+  if (!files[key]) {
+    result.innerHTML = `<p style="color:red">File not found</p>`;
+    return;
+  }
 
   const filePath = files[key];
 
@@ -61,5 +61,3 @@ function search() {
     `;
   }
 }
-
-

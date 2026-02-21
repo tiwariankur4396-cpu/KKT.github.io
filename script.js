@@ -1,70 +1,70 @@
-// REGISTERED USERS (DEVELOPER ADDS)
+// REGISTERED USERS
 const users = [
-    { name: "ANKUR71", roll: "064" },
-    { name: "VIBHAS29", roll: "047" }
+  { name: "ANKUR71", roll: "064" },
+  { name: "VIBHASH29", roll: "047" }
 ];
 
-// REGISTERED FILES
+// REGISTERED FILES (ALL KEYS LOWERCASE)
 const files = {
-    "notes": "files/notes.pdf",
-    "screenshot3": "/files/Screenshot3.png",
-    "photo": "/files/photo.png"
+  notes: "/files/notes.pdf",
+  screenshot: "/files/Screenshot3.png",
+  screenshot3: "/files/Screenshot3.png",
+  photo: "/files/photo.png"
 };
 
+// LOGIN FUNCTION
 function login() {
-    let name = document.getElementById("name").value;
-    let roll = document.getElementById("roll").value;
-    let msg = document.getElementById("msg");
+  const name = document.getElementById("name").value.toLowerCase().trim();
+  const roll = document.getElementById("roll").value.trim();
+  const msg = document.getElementById("msg");
 
-    if (name === "" || roll === "") {
-        msg.innerText = "Fill all fields";
-        return;
-    }
+  if (!name || !roll) {
+    msg.innerText = "Fill all fields";
+    return;
+  }
 
-    let ok = users.find(u => u.name === name && u.roll === roll);
+  const ok = users.find(u => u.name === name && u.roll === roll);
 
-    if (ok) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("search").style.display = "block";
-    } else {
-        msg.innerText = "Contact the developer";
-    }
+  if (ok) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("search").style.display = "block";
+    msg.innerText = "";
+  } else {
+    msg.innerText = "Contact the developer";
+  }
 }
 
+// SEARCH FUNCTION
 function search() {
-    let key = document.getElementById("searchBox").value
-                .toLowerCase()
-                .trim();
+  const key = document
+    .getElementById("searchBox")
+    .value
+    .toLowerCase()
+    .trim();
 
-    let result = document.getElementById("result");
+  const result = document.getElementById("result");
+  result.innerHTML = "";
 
-    if (files[key]) {
-        let filePath = files[key];
+  if (!key) {
+    result.innerHTML = "<p style='color:red'>Please enter a keyword</p>";
+    return;
+  }
 
-        // SHOW INSIDE PAGE, NOT OPEN NEW PAGE
-        if (filePath.endsWith(".pdf")) {
-            result.innerHTML =
-                `<iframe src="${filePath}" width="300" height="400"></iframe>`;
-        } else {
-            result.innerHTML =
-                `<img src="${filePath}" width="700" height="500">`;
-        }
-    } else {
-        
-result.innerText = `No file found for "${key}"`
-    }
+  if (!files[key]) {
+    result.innerHTML = `<p style="color:red">File not found: ${key}</p>`;
+    return;
+  }
+
+  const filePath = files[key];
+
+  if (filePath.endsWith(".pdf")) {
+    result.innerHTML = `
+      <iframe src="${filePath}" width="700" height="500"></iframe>
+    `;
+  } else {
+    result.innerHTML = `
+      <img src="${filePath}" style="max-width:100%; border:2px solid black;">
+    `;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

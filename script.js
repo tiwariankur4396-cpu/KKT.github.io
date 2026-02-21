@@ -1,16 +1,13 @@
-// USERS
 const users = [
   { name: "ankur71", roll: "064" }
 ];
 
-// FILE MAP (RELATIVE PATHS ONLY)
 const files = {
   screenshot: "files/screenshot3.png",
   photo: "files/photo.jpg",
   notes: "files/notes.pdf"
 };
 
-// LOGIN
 function login() {
   const name = document.getElementById("name").value.trim().toLowerCase();
   const roll = document.getElementById("roll").value.trim();
@@ -27,7 +24,6 @@ function login() {
   document.getElementById("searchSection").style.display = "block";
 }
 
-// SEARCH (OPEN ON SAME PAGE)
 function search() {
   const key = document.getElementById("searchBox").value.trim().toLowerCase();
   const result = document.getElementById("result");

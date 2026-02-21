@@ -9,7 +9,7 @@ const users = [
 // FIXED: Removed "KKT.github.io/" from paths. 
 // These must be relative to your index.html.
 const files = {
-    screenshot: "files/screenshot3.png",
+    screenshot: "files/Screenshot3.png",
     photo: "files/photo.jpg",
     notes: "files/notes.pdf"
 };
@@ -66,3 +66,4 @@ function search() {
         result.appendChild(img);
     }
 }
+

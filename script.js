@@ -5,9 +5,9 @@ const users = [
 
 // FILES
 const files = {
-  screenshot: "./files/screenshot3.png",
-  photo: "./files/photo.jpg",
-  notes: "./files/notes.pdf"
+  screenshot: "/files/screenshot3.png",
+  photo: "/files/photo.jpg",
+  notes: "/files/notes.pdf"
 };
 
 // LOGIN
@@ -53,4 +53,5 @@ function search() {
     result.innerHTML = `<img src="${path}">`;
   }
 }
+
 

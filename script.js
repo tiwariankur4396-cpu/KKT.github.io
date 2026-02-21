@@ -1,4 +1,4 @@
-"use strict";
+
 
 /* =========================
    USER LOGIN DATA
@@ -90,5 +90,6 @@ function showFile() {
 
   viewer.textContent = "Unsupported file type";
 }
+
 
 

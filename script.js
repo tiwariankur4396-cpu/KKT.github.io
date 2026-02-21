@@ -7,9 +7,9 @@ const users = [
 
 /* ===== FILE MAP ===== */
 const files = {
-  screenshot: "KKT.github.io/files/screenshot3.png",
-  photo: "KKT.github.io/files/photo.jpg",
-  notes: "KKT.github.io/files/notes.pdf"
+  screenshot: "files/screenshot3.png",
+  photo: "files/photo.jpg",
+  notes: "files/notes.pdf"
 };
 
 /* ===== LOGIN ===== */
@@ -61,5 +61,6 @@ function search() {
     output.appendChild(img);
   }
 }
+
 
 

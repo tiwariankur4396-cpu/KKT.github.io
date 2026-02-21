@@ -1,31 +1,26 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <div id="login-box">
-            <h2>User Login</h2>
-            <input type="text" id="username" placeholder="Enter Name">
-            <input type="text" id="rollno" placeholder="Enter Roll Number">
-            <button onclick="checkLogin()">Login</button>
-            <p id="login-error" class="error"></p>
+        <div id="login">
+            <h3>User Login</h3>
+            <input id="name" placeholder="Enter Name">
+            <input id="roll" placeholder="Enter Roll Number">
+            <button onclick="login()">Login</button>
+            <p id="msg" style="color:red;"></p>
         </div>
 
-        <div id="search-box" style="display: none;">
-            <h2>Search Files</h2>
-            <input type="text" id="search-input" placeholder="Search (e.g., photo, notes)">
-            <button onclick="findFile()">Search</button>
-            <div id="display-area"></div>
+        <div id="searchSection" style="display:none;">
+            <h3>File Search</h3>
+            <input id="searchBox" placeholder="Search photo or screenshot">
+            <button onclick="search()">Search</button>
+            <div id="result" style="margin-top:20px;"></div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

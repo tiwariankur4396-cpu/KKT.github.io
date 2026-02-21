@@ -4,7 +4,7 @@ const users = [
 
 const files = {
   screenshot: "files/screenshot3.png",
-  photo: "files/photo.jpg",
+  photo: "files/photo.png",
   notes: "files/notes.pdf"
 };
 
@@ -43,3 +43,4 @@ function search() {
     result.innerHTML = <img src="${path}" alt="file">;
   }
 }
+

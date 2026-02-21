@@ -1,16 +1,16 @@
-// -------- USERS --------
+// USERS
 const users = [
   { name: "ankur71", roll: "064" }
 ];
 
-// -------- FILE MAP (RELATIVE TO index.html) --------
+// FILE MAP (RELATIVE PATHS ONLY)
 const files = {
   screenshot: "files/screenshot3.png",
   photo: "files/photo.jpg",
   notes: "files/notes.pdf"
 };
 
-// -------- LOGIN --------
+// LOGIN
 function login() {
   const name = document.getElementById("name").value.trim().toLowerCase();
   const roll = document.getElementById("roll").value.trim();
@@ -27,17 +27,23 @@ function login() {
   document.getElementById("searchSection").style.display = "block";
 }
 
-// -------- OPEN FILE (BULLETPROOF) --------
+// SEARCH (OPEN ON SAME PAGE)
 function search() {
   const key = document.getElementById("searchBox").value.trim().toLowerCase();
+  const result = document.getElementById("result");
+  result.innerHTML = "";
 
   if (!files[key]) {
-    alert("File not found in code");
+    result.innerHTML = "<p style='color:red'>File not found</p>";
     return;
   }
 
-  // 🔒 ABSOLUTELY CORRECT URL RESOLUTION
-  const fileURL = new URL(files[key], document.baseURI).href;
+  const path = files[key];
+  const ext = path.split(".").pop().toLowerCase();
 
-  window.open(fileURL, "_blank");
+  if (ext === "pdf") {
+    result.innerHTML = <iframe src="${path}"></iframe>;
+  } else {
+    result.innerHTML = <img src="${path}" alt="file">;
+  }
 }

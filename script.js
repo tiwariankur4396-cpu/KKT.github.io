@@ -36,24 +36,18 @@ function login() {
 
 // SEARCH FUNCTION
 function search() {
-  const key = document
-    .getElementById("searchBox")
-    .value
-    .toLowerCase()
-    .trim();
-
   const result = document.getElementById("result");
-  result.innerHTML = "";
 
-  if (!key) {
-    result.innerHTML = "<p style='color:red'>Please enter a keyword</p>";
-    return;
-  }
-
-  if (!files[key]) {
-    result.innerHTML = `<p style="color:red">File not found: ${key}</p>`;
-    return;
-  }
+  // HARD-CODED IMAGE (NO VARIABLES, NO CONDITIONS)
+  result.innerHTML = `
+    <h3>Image test</h3>
+    <img 
+      src="/files/Screenshot3.png" 
+      style="max-width:100%; border:3px solid red;"
+      onerror="this.outerHTML='<p style=color:red>IMAGE FAILED TO LOAD</p>'"
+    >
+  `;
+}
 
   const filePath = files[key];
 
@@ -67,4 +61,5 @@ function search() {
     `;
   }
 }
+
 

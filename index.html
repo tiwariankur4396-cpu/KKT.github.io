@@ -1,52 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login & Files</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login & Files</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f4f6f8;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f6f8;
+    font-family: Arial, sans-serif;
+  }
 
-    .box {
-      width: 90%;
-      max-width: 400px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
+  .container {
+    width: 95%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
 
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
+  input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
 
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
 
-    #searchSection { display: none; }
-  </style>
+  #searchSection { display: none; }
+
+  #result {
+    margin-top: 20px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+  }
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
+  <!-- LOGIN -->
   <div id="login">
     <h3>Login</h3>
     <input id="name" placeholder="Name">
@@ -55,10 +72,12 @@
     <p id="msg" style="color:red"></p>
   </div>
 
+  <!-- SEARCH -->
   <div id="searchSection">
     <h3>Search File</h3>
-    <input id="searchBox" placeholder="Keyword">
+    <input id="searchBox" placeholder="Keyword (e.g. screenshot)">
     <button onclick="search()">Open</button>
+    <div id="result"></div>
   </div>
 
 </div>

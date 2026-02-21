@@ -1,39 +1,52 @@
-// USERS
+// ================= USERS =================
 const users = [
-  { name: "ankur71", roll: "064" },
-  { name: "vibhas29", roll: "047" }
+  {
+    name: "ankur71", // ALWAYS lowercase
+    roll: "064"
+  }
 ];
 
-// FILE REGISTRY (RELATIVE PATHS)
+// ================= FILE MAP =================
+// RULES:
+// - filenames MUST be lowercase
+// - extensions must match exactly
+// - use ./files/ always
+
 const files = {
-  screenshot: "./files/Screenshot3.png",
-  screenshot3: "./files/Screenshot3.png",
+  screenshot: "./files/screenshot3.png",
   photo: "./files/photo.jpg",
   image: "./files/image.png",
   notes: "./files/notes.pdf"
 };
 
-// LOGIN
+// ================= LOGIN =================
 function login() {
-  const name = document.getElementById("name").value.toLowerCase().trim();
-  const roll = document.getElementById("roll").value.trim();
+  const nameInput = document.getElementById("name").value.trim();
+  const rollInput = document.getElementById("roll").value.trim();
   const msg = document.getElementById("msg");
 
-  const user = users.find(u => u.name === name && u.roll === roll);
+  const name = nameInput.toLowerCase(); // normalize input
 
-  if (!user) {
-    msg.innerText = "Invalid login";
+  const validUser = users.find(
+    u => u.name === name && u.roll === rollInput
+  );
+
+  if (!validUser) {
+    msg.textContent = "Invalid login";
     return;
   }
+
+  msg.textContent = "";
 
   document.getElementById("login").style.display = "none";
   document.getElementById("searchSection").style.display = "block";
 }
 
-// SEARCH
+// ================= SEARCH =================
 function search() {
-  const key = document.getElementById("searchBox").value.toLowerCase().trim();
+  const key = document.getElementById("searchBox").value.trim().toLowerCase();
   const result = document.getElementById("result");
+
   result.innerHTML = "";
 
   if (!files[key]) {
@@ -41,18 +54,16 @@ function search() {
     return;
   }
 
-  const filePath = files[key];
-  const ext = filePath.split(".").pop().toLowerCase();
+  const path = files[key];
+  const ext = path.split(".").pop();
 
   if (ext === "pdf") {
-    result.innerHTML = `<iframe src="${filePath}"></iframe>`;
-  } else if (["png", "jpg", "jpeg"].includes(ext)) {
-    result.innerHTML = `<img src="${filePath}">`;
+    result.innerHTML = `
+      <iframe src="${path}" width="100%" height="500"></iframe>
+    `;
   } else {
-    result.innerHTML = "<p style='color:red'>Unsupported file type</p>";
+    result.innerHTML = `
+      <img src="${path}" alt="file" style="max-width:100%;height:auto;">
+    `;
   }
 }
-
-
-
-

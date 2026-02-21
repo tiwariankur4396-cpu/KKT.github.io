@@ -6,11 +6,11 @@ const users = [
 
 // FILE REGISTRY (RELATIVE PATHS)
 const files = {
-  screenshot: "/files/Screenshot3.png",
-  screenshot3: "/files/Screenshot3.png",
-  photo: "/files/photo.jpg",
-  image: "/files/image.png",
-  notes: "/files/notes.pdf"
+  screenshot: "./files/Screenshot3.png",
+  screenshot3: "./files/Screenshot3.png",
+  photo: "./files/photo.jpg",
+  image: "./files/image.png",
+  notes: "./files/notes.pdf"
 };
 
 // LOGIN
@@ -52,4 +52,5 @@ function search() {
     result.innerHTML = "<p style='color:red'>Unsupported file type</p>";
   }
 }
+
 

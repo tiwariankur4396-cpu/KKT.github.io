@@ -1,20 +1,17 @@
 "use strict";
 
-/* ===== USER DATA ===== */
 const users = [
     { name: "ankur71", roll: "064" }
 ];
 
-/* ===== FILE PATHS ===== */
-// FIXED: Removed "KKT.github.io/" from paths. 
-// These must be relative to your index.html.
+// FIXED: Removed "files/" prefix because images are in the same folder as this JS file.
+// Also fixed capitalization to match your sidebar exactly.
 const files = {
-    screenshot: "Screenshot3.png",
+    screenshot: "Screenshot3.png", 
     photo: "photo.png",
     notes: "notes.pdf"
 };
 
-/* ===== LOGIN FUNCTION ===== */
 function login() {
     const name = document.getElementById("name").value.trim().toLowerCase();
     const roll = document.getElementById("roll").value.trim();
@@ -32,16 +29,15 @@ function login() {
     document.getElementById("searchSection").style.display = "block";
 }
 
-/* ===== SEARCH & DISPLAY ===== */
 function search() {
-    // FIXED: Added 'key' definition. Your original code was missing this line!
+    // FIXED: Defined 'key' so the function knows what you typed
     const key = document.getElementById("searchBox").value.trim().toLowerCase();
     const result = document.getElementById("result");
 
-    result.innerHTML = ""; // Clear previous results
+    result.innerHTML = ""; 
 
     if (!files[key]) {
-        result.textContent = "File not found";
+        result.textContent = "File not found. Try 'photo' or 'screenshot'.";
         return;
     }
 
@@ -59,14 +55,12 @@ function search() {
         const img = document.createElement("img");
         img.src = path;
         img.style.width = "100%";
-        // Add an alert if the image fails to load to help you debug
+        
+        // Error helper: tells us if the file name in code matches the file on GitHub
         img.onerror = function() {
-            result.textContent = "Error: Image file not found in 'files' folder.";
+            result.textContent = "Path correct, but file not found: " + path;
         };
+        
         result.appendChild(img);
     }
 }
-
-
-
-

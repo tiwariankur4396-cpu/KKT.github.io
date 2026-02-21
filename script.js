@@ -2,11 +2,11 @@ const users = [
   { name: "ankur71", roll: "064" }
 ];
 
-// ✅ PROJECT-REPO SAFE PATHS
+// Only RELATIVE paths — no slashes, no repo names
 const files = {
-  screenshot: "/KKT.github.io/files/screenshot3.png",
-  photo: "/KKT.github.io/files/photo.jpg",
-  notes: "/KKT.github.io/files/notes.pdf"
+  screenshot: "files/screenshot3.png",
+  photo: "files/photo.jpg",
+  notes: "files/notes.pdf"
 };
 
 function login() {
@@ -33,6 +33,6 @@ function search() {
     return;
   }
 
-  // ✅ OPEN FILE DIRECTLY
-  window.open(files[key], "_blank");
+  // Let the browser resolve the path correctly
+  window.location.href = files[key];
 }

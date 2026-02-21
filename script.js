@@ -14,9 +14,12 @@ const files = {
 
 // LOGIN FUNCTION
 function login() {
-  const name = document.getElementById("name").value.toLowerCase().trim();
-  const roll = document.getElementById("roll").value.trim();
+  const nameInput = document.getElementById("name");
+  const rollInput = document.getElementById("roll");
   const msg = document.getElementById("msg");
+
+  const name = nameInput.value.toLowerCase().trim();
+  const roll = rollInput.value.trim();
 
   const user = users.find(
     u => u.name === name && u.roll === roll
@@ -27,6 +30,15 @@ function login() {
     return;
   }
 
+  // SHOW / HIDE SECTIONS (SAFE WAY)
+  const loginDiv = document.getElementById("login");
+  const searchDiv = document.getElementById("searchSection");
+
+  loginDiv.style.display = "none";
+  searchDiv.style.display = "block";
+
+  msg.innerText = "";
+}
   // SUCCESS
   document.getElementById("login").style.display = "none";
   document.getElementById("searchSection").style.display = "block";
@@ -61,3 +73,4 @@ function search() {
     `;
   }
 }
+

@@ -63,20 +63,26 @@
 
 <div class="container">
 
-  <!-- LOGIN -->
+  <!-- ❌ NO <form> TAG ANYWHERE -->
+
   <div id="login">
     <h3>Login</h3>
     <input id="name" placeholder="Name">
     <input id="roll" placeholder="Roll Number">
-    <button onclick="login()">Login</button>
+
+    <!-- ✅ type="button" IS CRITICAL -->
+    <button type="button" onclick="login()">Login</button>
+
     <p id="msg" style="color:red"></p>
   </div>
 
-  <!-- SEARCH -->
   <div id="searchSection">
     <h3>Search File</h3>
     <input id="searchBox" placeholder="Keyword (e.g. screenshot)">
-    <button onclick="search()">Open</button>
+
+    <!-- ✅ type="button" IS CRITICAL -->
+    <button type="button" onclick="search()">Open</button>
+
     <div id="result"></div>
   </div>
 

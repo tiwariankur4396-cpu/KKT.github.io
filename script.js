@@ -9,9 +9,9 @@ const users = [
 // FIXED: Removed "KKT.github.io/" from paths. 
 // These must be relative to your index.html.
 const files = {
-    screenshot: "files/Screenshot3.png",
-    photo: "files/photo.png",
-    notes: "files/notes.pdf"
+    screenshot: "files/files/Screenshot3.png",
+    photo: "files/files/photo.png",
+    notes: "files/files/notes.pdf"
 };
 
 /* ===== LOGIN FUNCTION ===== */
@@ -66,5 +66,6 @@ function search() {
         result.appendChild(img);
     }
 }
+
 
 

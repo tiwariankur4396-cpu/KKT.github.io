@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Center Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="registration-wrapper">
+        <div class="registration-card">
+            <h2>Student Registration</h2>
+            <p class="subtitle">Complete payment of ₹50 to register</p>
+            
+            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+                <input type="text" name="Student Name" placeholder="Full Name" required>
+                <input type="text" name="Roll Number" placeholder="Full Roll Number" required>
+                <input type="email" name="Gmail" placeholder="Your Gmail Address" required>
+
+                <div class="payment-section">
+                    <p><strong>Step 1: Scan to Pay ₹50</strong></p>
+                    <img src="C:\Users\Ravindra\Downloads\Payment.jpg" alt="GPay QR Code" class="qr-small">
+                    <p class="small-text">Accepts all UPI apps (GPay, PhonePe, etc.)</p>
+                </div>
+
+                <p class="small-text"><strong>Step 2:</strong> Click below after payment</p>
+                <button type="submit" class="reg-btn">I Have Paid & Want to Register</button>
+            </form>
+
+            <div class="footer-links">
+                <a href="index.html">← Back to Login</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

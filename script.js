@@ -9,7 +9,7 @@ const authorizedUsers = [
 // FIXED: Exact names from your MyWebsite folder
 const fileDatabase = {
     "screenshot": "Screenshot3.png", 
-    "photo": "photo.png",
+    "screenshot": "photo.png",
     "notes": "notes.pdf"
 };
 
@@ -47,5 +47,6 @@ function search() {
         result.textContent = "Not Available";
     }
 }
+
 
 

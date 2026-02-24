@@ -36,28 +36,46 @@ function search() {
     const result = document.getElementById("result");
     result.innerHTML = "";
 
+    // Mapping keys to exact file names as they appear in your GitHub
+    const fileDatabase = {
+        "screenshot": "Screenshot3.png",
+        "photo": "photo.png",
+        "notes": "Communication skills.pdf" // MUST match GitHub exactly
+    };
+
     if (fileDatabase[key]) {
         const fileName = fileDatabase[key];
         
-        // Check if the file is a PDF
         if (fileName.toLowerCase().endsWith('.pdf')) {
-            const iframe = document.createElement("iframe");
-            iframe.src = fileName;
-            iframe.style.width = "100%";
-            iframe.style.height = "500px"; // Give the PDF enough height to be readable
-            iframe.style.border = "none";
-            result.appendChild(iframe);
+            // 1. Create a container for the PDF
+            const pdfContainer = document.createElement("div");
             
-            // Add a backup download link for mobile users
-            const link = document.createElement("a");
-            link.href = fileName;
-            link.target = "_blank";
-            link.innerText = "Click here to open PDF in new tab";
-            link.style.display = "block";
-            link.style.marginTop = "10px";
-            result.appendChild(link);
+            // 2. Add a direct "View/Download" button (Best for Android/Mobile)
+            const downloadBtn = document.createElement("a");
+            downloadBtn.href = fileName;
+            downloadBtn.className = "download-btn"; // You can style this in CSS
+            downloadBtn.innerText = "Click to View or Download PDF";
+            downloadBtn.target = "_blank";
+            downloadBtn.style.display = "block";
+            downloadBtn.style.padding = "10px";
+            downloadBtn.style.background = "#007bff";
+            downloadBtn.style.color = "white";
+            downloadBtn.style.textDecoration = "none";
+            downloadBtn.style.borderRadius = "5px";
+            downloadBtn.style.marginBottom = "10px";
+            
+            // 3. Create an embed for Laptop users
+            const embed = document.createElement("embed");
+            embed.src = fileName;
+            embed.type = "application/pdf";
+            embed.style.width = "100%";
+            embed.style.height = "500px";
+            
+            pdfContainer.appendChild(downloadBtn);
+            pdfContainer.appendChild(embed);
+            result.appendChild(pdfContainer);
         } else {
-            // It's an image (png, jpg, etc.)
+            // Image handling remains the same
             const img = document.createElement("img");
             img.src = fileName;
             img.style.width = "100%";
@@ -67,11 +85,4 @@ function search() {
         result.textContent = "Not Available";
     }
 }
-
-
-
-
-
-
-
 

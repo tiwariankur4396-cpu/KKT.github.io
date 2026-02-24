@@ -34,19 +34,40 @@ function login() {
 function search() {
     const key = document.getElementById("searchBox").value.trim().toLowerCase();
     const result = document.getElementById("result");
-    result.innerHTML = ""; 
+    result.innerHTML = "";
 
     if (fileDatabase[key]) {
         const fileName = fileDatabase[key];
-        const img = document.createElement("img");
-        img.src = fileName; // No "files/" needed anymore!
-        img.style.width = "100%";
-        result.appendChild(img);
+        
+        // Check if the file is a PDF
+        if (fileName.toLowerCase().endsWith('.pdf')) {
+            const iframe = document.createElement("iframe");
+            iframe.src = fileName;
+            iframe.style.width = "100%";
+            iframe.style.height = "500px"; // Give the PDF enough height to be readable
+            iframe.style.border = "none";
+            result.appendChild(iframe);
+            
+            // Add a backup download link for mobile users
+            const link = document.createElement("a");
+            link.href = fileName;
+            link.target = "_blank";
+            link.innerText = "Click here to open PDF in new tab";
+            link.style.display = "block";
+            link.style.marginTop = "10px";
+            result.appendChild(link);
+        } else {
+            // It's an image (png, jpg, etc.)
+            const img = document.createElement("img");
+            img.src = fileName;
+            img.style.width = "100%";
+            result.appendChild(img);
+        }
     } else {
-        // Requirement: Say "Not Available"
         result.textContent = "Not Available";
     }
 }
+
 
 
 

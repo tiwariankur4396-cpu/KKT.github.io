@@ -8,7 +8,8 @@ const authorizedUsers = [
     { name: "aarya92", roll: "001" },
      { name: "vaishnavi25", roll: "066" },
       { name: "narendra30", roll: "053" },
-    { name: "ananya77", roll: "096" }
+    { name: "ananya77", roll: "096" },
+       { name: "ashmit09", roll: "044" }
 ];
 
 const fileDatabase = {
@@ -68,6 +69,7 @@ function search() {
         resultDiv.textContent = "No matching file found...";
     }
 }
+
 
 
 

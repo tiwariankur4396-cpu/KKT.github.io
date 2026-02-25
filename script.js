@@ -6,7 +6,8 @@ const authorizedUsers = [
     { name: "parth99", roll: "007" },
     { name: "iram66", roll: "090" },
     { name: "aarya92", roll: "001" },
-     { name: "vaishnavi25", roll: "066" }
+     { name: "vaishnavi25", roll: "066" },
+      { name: "narendra30", roll: "053" }
 ];
 
 const fileDatabase = {
@@ -66,6 +67,7 @@ function search() {
         resultDiv.textContent = "No matching file found...";
     }
 }
+
 
 
 

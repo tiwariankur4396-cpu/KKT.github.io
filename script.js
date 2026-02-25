@@ -12,7 +12,8 @@ const authorizedUsers = [
 const fileDatabase = {
     "screenshot": "Screenshot3.png", 
     "photo": "photo.png",
-    "notes": "Communication skills.pdf"
+    "notes": "Communication skills.pdf",
+     "notes": "Communication skills.pdf"
 };
 
 function login() {
@@ -87,6 +88,7 @@ function search() {
         result.textContent = "Not Available";
     }
 }
+
 
 
 

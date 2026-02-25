@@ -10,7 +10,7 @@ const authorizedUsers = [
 const fileDatabase = {
     "screenshot": "Screenshot3.png",
     "photo": "photo.png",
-    "cpexp3": "cpexp3.pdf",
+    "cpexp3": "cpexp3(1).pdf",
     "cpexp4": "cpexp4.pdf",
     "notes": "Communication skills.pdf"
 };
@@ -64,3 +64,4 @@ function search() {
         resultDiv.textContent = "No matching file found...";
     }
 }
+
